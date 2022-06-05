@@ -4,15 +4,17 @@ import { VerticalScaleLocationEnum } from "../core/enums/VerticalScaleLocationEn
 import uniqid from "uniqid";
 import { ChessConfiguration } from "../core/ChessConfiguration";
 
+// Веритикальная шкала
 class VerticalScaleComponent extends React.Component<{
 	location: VerticalScaleLocationEnum;
 }> {
+	// Конструктор
 	constructor(props: { location: VerticalScaleLocationEnum }) {
 		super(props);
 	}
 
+	// Прорисовка компонента
 	render(): React.ReactNode {
-		// console.log("render VerticalScaleComponent>>", this.props.location);
 		const getTextSize = (txt: string) => {
 			const element = document.createElement("canvas");
 			const context = element.getContext("2d");

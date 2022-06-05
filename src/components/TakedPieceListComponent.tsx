@@ -7,11 +7,14 @@ import { TakedPieceListProps } from "../core/types/TakedPieceListProps";
 import uniqid from "uniqid";
 import { ChessConfiguration } from "../core/ChessConfiguration";
 
+// Поле с фигурами, которые забрали
 class TakedPieceListComponent extends React.Component<TakedPieceListProps> {
+	// Конструктор
 	constructor(props: TakedPieceListProps) {
 		super(props);
 	}
 
+	// Прорисовка компонента
 	render(): ReactNode {
 		// console.log("render TakedPieceListComponent>>", this.props);
 		const TakedPieces = styled.div`

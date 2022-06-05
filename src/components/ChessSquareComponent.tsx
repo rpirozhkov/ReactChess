@@ -13,20 +13,19 @@ class ChessSquareComponent extends React.Component<ChessSquareProps> {
 		super(props);
 	}
 
+	// Прорисовка компонента
 	render() {		
 		const position: ChessPosition = {
 			rowIndex: this.props.rowIndex,
 			columnIndex: this.props.columnIndex
 		};
-		// console.log("render ChessSquareComponent >>", position);
 
 		const Cell = styled.div`
 			display: inline-block;
 			width: ${ChessConfiguration.CELL_WIDTH}px;
 			height: ${ChessConfiguration.CELL_HEIGHT}px;
 			background-color: ${(this.props.rowIndex + this.props.columnIndex) %
-				2 ===
-			0
+				2 === 0
 				? ChessConfiguration.WHITE_CELL_COLOR
 				: ChessConfiguration.BLACK_CELL_COLOR};
 			position: absolute;
@@ -45,6 +44,7 @@ class ChessSquareComponent extends React.Component<ChessSquareProps> {
 		return <Cell id={id} />;
 	}
 
+	// Метод определяет нужна ли прорисовка компонента
 	shouldComponentUpdate(nextProps: ChessSquareProps) {
 		const position: ChessPosition = {
 			rowIndex: nextProps.rowIndex,

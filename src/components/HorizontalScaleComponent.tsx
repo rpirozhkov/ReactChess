@@ -4,15 +4,17 @@ import uniqid from "uniqid";
 import { ChessConfiguration } from "../core/ChessConfiguration";
 import { HorizontalScaleLocationEnum } from "../core/enums/HorizontalScaleLocationEnum";
 
+// Горизонтальная шкала
 class HorizontalScaleComponent extends React.Component<{
 	location: HorizontalScaleLocationEnum;
 }> {
+	//Конструктор
 	constructor(props: { location: HorizontalScaleLocationEnum }) {
 		super(props);
 	}
 
+	// Прорисовка компонента
 	render(): React.ReactNode {
-		// console.log("render HorizontalScaleComponent>>", this.props.location);
 		const getTextSize = (txt: string) => {
 			const element = document.createElement("canvas");
 			const context = element.getContext("2d");

@@ -16,10 +16,12 @@ import { HorizontalScaleLocationEnum } from "../core/enums/HorizontalScaleLocati
 import uniqid from "uniqid";
 import TakedPieceListComponent from "./TakedPieceListComponent";
 import { ChessPieceColorEnum } from "../core/enums/ChessPieceColorEnum";
+import { ChessConfiguration } from "../core/ChessConfiguration";
 
+// Основной div, включает: div с фишками, которые забрали; шкала; игровое поле
 const GameBoard = styled.div`
-	width: 1300px;
-	height: 900px;
+	width: ${ChessConfiguration.TAKED_BLOCK_WIDTH * 2 + ChessConfiguration.V_SCALE_WIDTH * 2 + ChessConfiguration.CELL_WIDTH * 8}px;
+	height: ${ChessConfiguration.H_SCALE_HEIGHT * 2 + ChessConfiguration.CELL_HEIGHT * 8}px;
 	background-color: transparent;
 	position: absolute;
 	left: 50%;
@@ -28,19 +30,19 @@ const GameBoard = styled.div`
 	line-height: 1px;
 `;
 
+// Игровое поле с фишками
 const Square = styled.div`
-	width: 800px;
-	height: 800px;
+	width: ${ChessConfiguration.CELL_WIDTH * 8}px;
+	height: ${ChessConfiguration.CELL_HEIGHT * 8}px;
 	position: absolute;
-	left: 250px;
-	top: 50px;
+	left: ${ChessConfiguration.TAKED_BLOCK_WIDTH + ChessConfiguration.V_SCALE_WIDTH}px;
+	top: ${ChessConfiguration.H_SCALE_HEIGHT}px;
 	box-shadow: 0 0 40px 2px black;
 `;
 
 // Компонент - игровое поле
 const ChessBoardComponent = () => {
-	// console.log("render ChessBoardComponent");
-	// Строим поле и
+	// Строим поле и фигуры
 	const cellList: JSX.Element[][] = [];
 	const pieces: ChessPiece[] = [];
 	for (let rowIndex = 0; rowIndex < 8; rowIndex++) {

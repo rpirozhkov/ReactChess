@@ -42,10 +42,8 @@ class ChessPieceComponent extends React.Component<
 		super(props);
 
 		this.state = {
-			position: {
-				left: props.position.columnIndex * ChessConfiguration.CELL_WIDTH,
-				top: props.position.rowIndex * ChessConfiguration.CELL_HEIGHT
-			}
+			left: props.position.columnIndex * ChessConfiguration.CELL_WIDTH,
+			top: props.position.rowIndex * ChessConfiguration.CELL_HEIGHT
 		};
 
 		this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -76,8 +74,8 @@ class ChessPieceComponent extends React.Component<
 			width: ${ChessConfiguration.CELL_WIDTH}px;
 			height: ${ChessConfiguration.CELL_HEIGHT}px;
 			position: absolute;
-			left: ${this.state.position.left}px;
-			top: ${this.state.position.top}px;
+			left: ${this.state.left}px;
+			top: ${this.state.top}px;
 			z-index: ${this.props.type === ActionTypeEnum.BeginMove &&
 			this.props.id === this.props.pieceId
 				? 1000
@@ -108,10 +106,11 @@ class ChessPieceComponent extends React.Component<
 
 		// Если забрали фигуру
 		if (isEqualPositions(nextProps.position, nextProps.finish)) return true;
-		
-		return false;;
+
+		return false;
 	}
 
+	// После render компонента, проверим некоторые условия
 	componentDidUpdate() {
 		const chessPiece = Engine.getChessPieceById(this.props.id);
 		if (
@@ -138,10 +137,10 @@ class ChessPieceComponent extends React.Component<
 	handleMouseEnter(event: MouseEvent) {
 		const currentPoition: ChessPosition = {
 			rowIndex: Math.round(
-				this.state.position.top / ChessConfiguration.CELL_HEIGHT
+				this.state.top / ChessConfiguration.CELL_HEIGHT
 			),
 			columnIndex: Math.round(
-				this.state.position.left / ChessConfiguration.CELL_WIDTH
+				this.state.left / ChessConfiguration.CELL_WIDTH
 			)
 		};
 		let cursor: string =
@@ -169,8 +168,8 @@ class ChessPieceComponent extends React.Component<
 
 		const moves = Engine.getAvailableMoves(this.props);
 
-		this.dragItemLeft = this.state.position.left;
-		this.dragItemTop = this.state.position.top;
+		this.dragItemLeft = this.state.left;
+		this.dragItemTop = this.state.top;
 
 		this.cursorX = event.pageX;
 		this.cursorY = event.pageY;
@@ -197,10 +196,10 @@ class ChessPieceComponent extends React.Component<
 		document.removeEventListener("mousemove", this.handleMouseMove);
 
 		const rowIndex = Math.round(
-			this.state.position.top / ChessConfiguration.CELL_HEIGHT
+			this.state.top / ChessConfiguration.CELL_HEIGHT
 		);
 		const columnIndex = Math.round(
-			this.state.position.left / ChessConfiguration.CELL_WIDTH
+			this.state.left / ChessConfiguration.CELL_WIDTH
 		);
 
 		const needUpdatePosition = this.props.availableMoves.find((move) =>
@@ -222,11 +221,8 @@ class ChessPieceComponent extends React.Component<
 		}
 		this.setState({
 			...this.state,
-			position: {
-				left:
-					this.props.position.columnIndex * ChessConfiguration.CELL_WIDTH,
-				top: this.props.position.rowIndex * ChessConfiguration.CELL_HEIGHT
-			}
+			left: this.props.position.columnIndex * ChessConfiguration.CELL_WIDTH,
+			top: this.props.position.rowIndex * ChessConfiguration.CELL_HEIGHT
 		});
 
 		if (this.props.endMove) {
@@ -257,10 +253,8 @@ class ChessPieceComponent extends React.Component<
 	moveFigure(pageX: number, pageY: number): void {
 		this.setState({
 			...this.state,
-			position: {
-				left: this.dragItemLeft + pageX - this.cursorX,
-				top: this.dragItemTop + pageY - this.cursorY
-			}
+			left: this.dragItemLeft + pageX - this.cursorX,
+			top: this.dragItemTop + pageY - this.cursorY
 		});
 	}
 
