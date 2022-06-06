@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { moveReducer } from "./redux/moveReducer";
 import App from "./App";
-import { ChessConfiguration } from "./core/ChessConfiguration";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement

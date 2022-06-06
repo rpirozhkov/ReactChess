@@ -3,16 +3,16 @@ import { ChessPieceColorEnum } from "./enums/ChessPieceColorEnum";
 // Конфигурация шахмат
 export class ChessConfiguration {
 	// Ширина ячейки
-	static CELL_WIDTH: number = 100;
+	static CELL_WIDTH = 100;
 
 	// Высота ячейки
-	static CELL_HEIGHT: number = 100;
+	static CELL_HEIGHT = 100;
 
 	// Цвет светлого поля
-	static readonly WHITE_CELL_COLOR: string = "whitesmoke";
+	static readonly WHITE_CELL_COLOR = "whitesmoke";
 
 	// Цвет темного поля
-	static readonly BLACK_CELL_COLOR: string = "gray";
+	static readonly BLACK_CELL_COLOR = "gray";
 
 	// Цвет фигур сверху
 	static readonly TOP_COLOR: ChessPieceColorEnum = ChessPieceColorEnum.Black;
